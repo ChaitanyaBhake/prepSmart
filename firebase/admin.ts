@@ -1,27 +1,38 @@
-import {cert, getApps, initializeApp} from "firebase-admin/app";
-import {getAuth} from "firebase-admin/auth"
-import {getFirestore} from "firebase-admin/firestore"
+// Import necessary functions from Firebase Admin SDK
+import {
+  cert,
+  getApps,
+  initializeApp,
+} from 'firebase-admin/app';
+import { getAuth } from 'firebase-admin/auth';
+import { getFirestore } from 'firebase-admin/firestore';
 
-const initFirebaseAdmin = ()=> {
+// Initialize Firebase Admin SDK
+const initFirebaseAdmin = () => {
+  // Get the list of already initialized Firebase apps
+  const apps = getApps();
 
-    //Checks if the firebase is already initialized or not
-    const apps = getApps();
+  // If no Firebase apps are initialized, initialize one
+  if (!apps.length) {
+    initializeApp({
+      credential: cert({
+        projectId: process.env.FIREBASE_PROJECT_ID,
+        clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
+        privateKey:
+          process.env.FIREBASE_PRIVATE_KEY?.replace(
+            /\\n/g,
+            '\n'
+          ),
+      }),
+    });
+  }
 
-    if(!apps.length){
-        initializeApp({
-            credential: cert({
-                projectId: process.env.FIREBASE_PROJECT_ID,
-                clientEmail: process.env.FIREBASE_CLIENT_EMAIL,
-                privateKey: process.env.FIREBASE_PRIVATE_KEY?.replace(/\\n/g,"\n")
-            })
-        })
-    }
+  // Return the initialized Auth and Firestore instances
+  return {
+    auth: getAuth(),
+    db: getFirestore(),
+  };
+};
 
-    return {
-        auth: getAuth(),
-        db: getFirestore()
-    }
-}
-
-export const {auth,db} = initFirebaseAdmin()
-
+// Destructure and export the auth and db instances
+export const { auth, db } = initFirebaseAdmin();

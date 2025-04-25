@@ -163,6 +163,7 @@
 }
 
 @layer components {
+  /* Call button Css */
   .btn-call {
     @apply inline-block px-7 py-3 font-bold text-sm leading-5 text-white transition-colors duration-150 bg-success-100 border border-transparent rounded-full shadow-sm focus:outline-none focus:shadow-2xl active:bg-success-200 hover:bg-success-200 min-w-28 cursor-pointer items-center justify-center overflow-visible;
 
@@ -171,6 +172,7 @@
     }
   }
 
+  /* Disconnect Call Button CSS */
   .btn-disconnect {
     @apply inline-block px-7 py-3 text-sm font-bold leading-5 text-white transition-colors duration-150 bg-destructive-100 border border-transparent rounded-full shadow-sm focus:outline-none focus:shadow-2xl active:bg-destructive-200 hover:bg-destructive-200 min-w-28;
   }
@@ -255,9 +257,9 @@
     }
   }
   /* Transcript Custom CSS ENDS ================================= */
-
   /* Agent Component Custom CSS ENDS ============================= */
 
+  /* Feedback Page CSS */
   .section-feedback {
     @apply flex flex-col gap-8 max-w-5xl mx-auto max-sm:px-4 text-lg leading-7;
 

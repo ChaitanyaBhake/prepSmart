@@ -8,11 +8,12 @@ export function cn(...inputs: ClassValue[]) {
 
 const techIconBaseURL = "https://cdn.jsdelivr.net/gh/devicons/devicon/icons";
 
-//Take the skill string name as input and remove . spaces
+//Take the skill string name as input and remove .js and spaces and return the generated matching key in mapping obj
 const normalizeTechName = (tech: string) => {
   const key = tech.toLowerCase().replace(/\.js$/, "").replace(/\s+/g, "");
   return mappings[key as keyof typeof mappings];
 };
+
 
 const checkIconExists = async (url: string) => {
   try {
@@ -23,6 +24,7 @@ const checkIconExists = async (url: string) => {
   }
 };
 
+//Builds a dynamic image url for the stack array and call the normalize and checkIcons to check if normalized image is present in server 
 export const getTechLogos = async (techArray: string[]) => {
   const logoURLs = techArray.map((tech) => {
     const normalized = normalizeTechName(tech);
