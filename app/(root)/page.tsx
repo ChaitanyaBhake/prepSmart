@@ -51,11 +51,11 @@ const Homepage = async () => {
         </div>
 
         <Image
-          src="/robot.png"
+          src="/InterviewBot.png"
           alt="robo-dude"
           width={400}
           height={400}
-          className="max-sm:hidden"
+          className="max-sm:hidden w-[400px] max-[719px]:w-[350px]"
         />
       </section>
 
